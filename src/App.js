@@ -7,11 +7,18 @@ import './App.css';
 const App = () =>{
   const [searchField,setSearchField]=useState('');
   const [monsters,setMonsters]=useState([]);
+  const [title,setTitle]=useState('');
+
   const [filterdMonsters,setfilterdMonsters]=useState(monsters);
   const  onSerachChange=(event)=>{
   const searchFieldString=event.target.value.toLocaleLowerCase()
         setSearchField(searchFieldString)
   }
+  const  onTitleChange=(event)=>{
+    const searchFieldString=event.target.value.toLocaleLowerCase()
+          setTitle(searchFieldString)
+    }
+
   const filterdMonster=monsters.filter((monster)=>{
     return monster.name.toLocaleLowerCase().includes(searchField);
   });
@@ -30,8 +37,10 @@ const App = () =>{
 
   return(
     <div className="App">
-        <h1 className='app-title'>Monsters Rolodex</h1>
-        <SerachBox onChangeHandler={onSerachChange}  placeholder='Search monster'  className='serach-box-monsters'/>
+        <h1 className='app-title'>{title}</h1>
+        <SerachBox onChangeHandler={onSerachChange}  placeholder='Search monster'  className='serach-box-monsters'/> <br/>
+        <SerachBox onChangeHandler={onTitleChange}  placeholder='set title'  className='serach-box-title'/>
+
         <CardList monsters={filterdMonster} />
 
         </div>
